@@ -54,7 +54,7 @@ class userController {
                 const userData = await user.findOne({ identityNumber });
                 if(!userData)
                     throw { name: 'custom', message: 'Account not found', statusCode: 404 }
-                cache = await RedisInstance.setCache('user_identity_number' + accountNumber,userData.transform());
+                cache = await RedisInstance.setCache('user_identity_number' + identityNumber,userData.transform());
             }
             res.status(200).json({ userData: cache });
         } catch (error) {
